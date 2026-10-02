@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#110f12" />
+    <meta name="description" content="A focused pairing gate for Captain Yami Bot." />
+    <link rel="icon" href="/favicon.svg" />
+    <title>Captain Yami · Pairing Gate</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="page-shell">
+      <header class="topbar">
+        <a class="wordmark" href="/" aria-label="Captain Yami pairing home">
+          <span class="mark" aria-hidden="true"><span class="mark-star">✦</span></span>
+          <span class="wordmark-copy"><strong>YAMI</strong><small>PAIRING GATE</small></span>
+        </a>
+        <div class="topbar-status"><span class="live-dot"></span><span id="bridge-label">BRIDGE STANDBY</span></div>
+      </header>
+
+      <main>
+        <section class="hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> Captain Yami Bot · secure handoff</p>
+            <h1>Open the gate.<br /><em>Link your bot.</em></h1>
+            <p class="hero-lede">A focused pairing ritual for the crew behind the bot. Choose your route, follow the WhatsApp prompt, and keep your session ID close.</p>
+            <div class="hero-meta">
+              <span><i class="meta-check">✓</i> Mobile ready</span>
+              <span><i class="meta-check">✓</i> QR or phone code</span>
+              <span><i class="meta-check">✓</i> Copyable session handoff</span>
+            </div>
+          </div>
+          <div class="seal-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="seal-ring"><div class="seal-star">✦</div><span>CAPTAIN<br />YAMI</span></div>
+            <span class="rune rune-a">ᛉ</span><span class="rune rune-b">ᚱ</span><span class="rune rune-c">✧</span>
+          </div>
+        </section>
+
+        <section class="workspace" aria-label="Pairing workspace">
+          <aside class="steps-panel">
+            <div class="panel-kicker">PAIRING RITUAL <span>01—04</span></div>
+            <ol class="steps" id="steps-list">
+              <li class="step is-active" data-step="1"><span class="step-number">01</span><span><strong>Unlock the gate</strong><small>Enter your access code</small></span></li>
+              <li class="step" data-step="2"><span class="step-number">02</span><span><strong>Choose a route</strong><small>QR or phone number</small></span></li>
+              <li class="step" data-step="3"><span class="step-number">03</span><span><strong>Pair WhatsApp</strong><small>Keep the bridge open</small></span></li>
+              <li class="step" data-step="4"><span class="step-number">04</span><span><strong>Claim your session</strong><small>Copy the handoff ID</small></span></li>
+            </ol>
+            <div class="steps-foot"><span class="tiny-shield">◆</span><span>Protected handoff<br /><b>Captain Yami Bot</b></span></div>
+          </aside>
+
+          <section class="action-panel">
+            <div class="action-panel-head"><div><p class="panel-kicker">PAIRING CONSOLE</p><h2 id="panel-title">Enter the access code</h2></div><span class="panel-index" id="panel-index">01</span></div>
+
+            <div class="view is-visible" id="access-view">
+              <p class="section-copy">This gate keeps the pairing surface away from the main bot panel. Enter the code shared by your Captain.</p>
+              <form id="access-form" class="access-form">
+                <label for="access-code">ACCESS CODE <span>required</span></label>
+                <div class="input-wrap"><span class="input-prefix">⌁</span><input id="access-code" name="accessCode" type="password" autocomplete="off" placeholder="Enter your gate code" aria-describedby="access-hint" /><button class="reveal-button" type="button" id="reveal-code" aria-label="Show access code">SHOW</button></div>
+                <p class="input-hint" id="access-hint"><span class="hint-dot"></span> Preview code: <b>yami1234</b></p>
+                <button class="primary-button" type="submit">Enter the pairing gate <span>↗</span></button>
+                <p class="error-message" id="access-error" role="alert"></p>
+              </form>
+              <div class="trust-note"><span class="note-icon">⌘</span><p><strong>Private by design.</strong> Your number is only used for the pairing request. Never share your WhatsApp verification code.</p></div>
+            </div>
+
+            <div class="view" id="method-view" hidden>
+              <p class="section-copy">Pick the route that feels right for your device. You can switch methods before the request begins.</p>
+              <div class="method-tabs" role="tablist" aria-label="Pairing method">
+                <button class="method-tab is-selected" data-method="qr" role="tab" aria-selected="true"><span class="method-icon">⌗</span><span><strong>Scan QR</strong><small>Best for a second screen</small></span><span class="tab-arrow">→</span></button>
+                <button class="method-tab" data-method="code" role="tab" aria-selected="false"><span class="method-icon">#</span><span><strong>Phone number</strong><small>Link with a WhatsApp code</small></span><span class="tab-arrow">→</span></button>
+              </div>
+              <div class="method-note"><span class="note-icon">i</span><p id="method-note-text">Open WhatsApp on your phone and scan the code shown on the next screen.</p></div>
+              <button class="primary-button" id="continue-method" type="button">Continue with QR <span>↗</span></button>
+              <button class="text-button" id="back-to-access" type="button">← Back to access code</button>
+            </div>
+
+            <div class="view" id="pairing-view" hidden>
+              <div class="pairing-topline"><span class="status-pill is-waiting" id="pairing-status-pill"><span></span><span id="pairing-status-label">WAITING FOR SCAN</span></span><span class="expires" id="expires-label">EXPIRES IN 02:00</span></div>
+              <div class="pairing-layout">
+                <div class="qr-card" id="qr-card"><div class="qr-corner tl"></div><div class="qr-corner tr"></div><div class="qr-corner bl"></div><div class="qr-pattern" id="qr-pattern" aria-label="QR pairing preview"></div><div class="qr-caption">PAIRING SEAL <span>·</span> YAMI BRIDGE</div></div>
+                <div class="pairing-instructions" id="qr-instructions"><p class="instruction-kicker">ON YOUR PHONE</p><ol><li><span>01</span>Open <b>WhatsApp</b> → Settings.</li><li><span>02</span>Tap <b>Linked devices</b> → Link a device.</li><li><span>03</span>Point your camera at this seal.</li></ol><p class="small-muted">Keep this window open until the status changes to linked.</p></div>
+                <div class="code-card" id="code-card" hidden><p class="instruction-kicker">WHATSAPP PAIRING CODE</p><div class="whatsapp-code" id="whatsapp-code">— — — —</div><p>On your phone, choose <b>Link with phone number</b> and enter the WhatsApp-generated code here.</p></div>
+              </div>
+              <div class="pairing-actions"><button class="primary-button" id="demo-complete" type="button">Simulate linked state <span>↗</span></button><button class="text-button" id="restart-pairing" type="button">↻ Request a fresh route</button></div>
+              <p class="bridge-warning" id="bridge-warning"><span>!</span> Preview mode: the supplied bot still needs a bridge endpoint for a real QR or WhatsApp-generated code.</p>
+            </div>
+
+            <div class="view" id="session-view" hidden>
+              <div class="success-banner"><span class="success-mark">✓</span><div><strong>Pairing complete</strong><p>Your handoff is ready. Keep this ID private.</p></div></div>
+              <div class="session-seal"><span class="seal-label">SESSION ID · CAPTAIN YAMI</span><div class="session-value" id="session-value">YAMI-SESSION-0000</div><button class="copy-button" id="copy-session" type="button"><span id="copy-icon">▣</span><span id="copy-label">Copy session ID</span></button></div>
+              <div class="session-guidance"><span class="note-icon">⌘</span><p><strong>Use this handoff in your bot host.</strong> Paste the full session ID into the bridge configuration, then restart Captain Yami. Never post it in a public group.</p></div>
+              <button class="primary-button" id="pair-another" type="button">Pair another WhatsApp number <span>↗</span></button>
+              <p class="small-muted centered">Need help? Restart the bot panel and request a fresh route.</p>
+            </div>
+          </section>
+        </section>
+      </main>
+
+      <footer class="footer"><span>YAMI / PAIRING GATE</span><span>BUILT FOR CAPTAIN YAMI BOT</span><span>v1.0 · <a href="/README.md">bridge notes</a></span></footer>
+    </div>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
